@@ -1,7 +1,8 @@
+package MainSource;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Vector;
+
 
 public class UserReciever extends Thread{
 	private ServerManager ServerManager;
@@ -21,7 +22,7 @@ public class UserReciever extends Thread{
 	public void run() {
 		// TODO Auto-generated method stub
 		
-		while(true){
+		while(ClientManager.getInstance().count_Client()<4){
 			try {
 				ServerManager.getServerGui().getTextArea().append("접속자 대기중...\n");
 				socket=serverSocket.accept();

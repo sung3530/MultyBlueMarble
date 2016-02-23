@@ -1,3 +1,4 @@
+package MainSource;
 import java.net.Socket;
 import java.util.Vector;
 
@@ -10,9 +11,16 @@ public class ClientManager {
 	
 	private Vector clientList=new Vector();
 	
+	public Vector getList(){
+		return clientList;
+	}
+	
+	public int count_Client(){
+		return clientList.size();
+	}
 	public void clientGenerate(Socket socket,ServerGui Server_GUI){
 		Client client=new Client();
-		//Client.user_Network(socket,Server_GUI);
+		client.client_Network(socket,Server_GUI);
 		clientList.add(client);
 	}
 }
