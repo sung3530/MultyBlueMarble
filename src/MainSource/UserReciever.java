@@ -28,6 +28,7 @@ public class UserReciever extends Thread{
 				socket=serverSocket.accept();
 				ServerManager.getServerGui().getTextArea().append("사용잡 접속!\n");
 				
+				
 				ClientManager.getInstance().clientGenerate(socket, ServerManager.getServerGui());
 				
 			} catch (IOException e) {
@@ -41,5 +42,6 @@ public class UserReciever extends Thread{
 				}
 			}
 		}
+		ClientManager.getInstance().turnStart(0);
 	}
 }

@@ -4,12 +4,12 @@ import MainSource.Client;
 
 public class City {
 
-	String name;
-	Client master;
-	int price;
-	int fee;
-	int building;
-	int hotel;
+	protected String name;
+	protected Client master;
+	protected int price;
+	protected int fee;
+	protected int building;
+	protected int hotel;
 	
 	public void plusFee(int buildings) {
 		// TODO Auto-generated method stub

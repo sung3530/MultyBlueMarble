@@ -5,7 +5,6 @@ public class dice {
 		private int firstDice;
 		private int secondDice;
 		private boolean doubleState; 
-		private int doubleCount;
 		public boolean getDoubleState() {
 			// TODO Auto-generated method stub
 			return doubleState;
