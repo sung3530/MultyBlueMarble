@@ -12,7 +12,7 @@ public class JsonParse {
 	private JSONParser parser = new JSONParser();
 	private String code;
 	private dice dice=new dice();
-	private int diceTemp;
+
 	
 	public void json_parsing(String message,Client client){
 	
@@ -32,16 +32,17 @@ public class JsonParse {
 		case "client" : // user 이름 받아서 이름 저장.
 			client.setName((String)json_Data.get("body"));
 			String[] list=ClientManager.getInstance().setNameList();
-			ClientManager.getInstance().send_ToAll("nameList", list);
+			//ClientManager.getInstance().send_ToAll("nameList", list);
 			System.out.println((String)json_Data.get("body"));
 			break;
 		case "dice":
-			diceTemp=dice.Rolling();
-			client.send_Json_Message("roll", diceTemp);
-			client.move(diceTemp);
+			dice.Rolling();
+			client.send_Json_Message("roll", dice.getFirstDice(),dice.getSecondDice());
+			if(dice.getDoubleState())
+				ClientManager.getInstance().doubleTurn();
+			client.move(dice.getFirstDice()+dice.getSecondDice());
 			citysCheck(client);
 			break;
-			
 		case "city" :
 			if((boolean)json_Data.get("body")){
 				if(client.buyCity( CityCheck.getInstance().getCityList().getCityList()[client.getPosition()].getPrice())){

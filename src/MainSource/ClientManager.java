@@ -18,8 +18,8 @@ public class ClientManager {
 		return clientList;
 	}
 	public String[] setNameList(){
-		for (int i = 0; i < nameList.length; i++) {
-			Client client=(Client)clientList.elementAt(i);
+		for (int i = 0; i < clientList.size(); i++) {
+			client=(Client)clientList.elementAt(i);
 			nameList[i]=client.getName();
 		}
 		return nameList;
@@ -28,42 +28,19 @@ public class ClientManager {
 	public int count_Client(){
 		return clientList.size();
 	}
+	public void doubleTurn(){
+		turn--;
+	}
 	public void turnStart(){
-		switch (turn%4) {
-		case 0:
-			client=(Client)clientList.elementAt(0);
-			if(client.getIsland())
-				client.send_Json_Message("order", true);
-			turn++;
-			break;
-
-		case 1:
-			client=(Client)clientList.elementAt(1);
-			if(client.getIsland())
-				client.send_Json_Message("order", true);
-			turn++;
-			break;
-
-		case 2:
-			client=(Client)clientList.elementAt(2);
-			if(client.getIsland())
-				client.send_Json_Message("order", true);
-			turn++;
-			break;
-
-		case 3:
-			client=(Client)clientList.elementAt(3);
-			if(client.getIsland())
-				client.send_Json_Message("order", true);
-			turn++;
-			break;
-
-		default:
-			break;
-		}
+		
+		client=(Client)clientList.elementAt(turn%4);
+		if(client.getIsland())
+			client.send_Json_Message("turn", true);
+		turn++;
+		
 	}
 	public void clientGenerate(Socket socket,ServerGui Server_GUI){
-		Client client=new Client();
+		client=new Client();
 		client.client_Network(socket,Server_GUI);
 		clientList.add(client);
 	}
@@ -73,9 +50,19 @@ public class ClientManager {
 			client.send_Json_Message(code, body);
 		}
 	}
-	public void send_ToAll(String code, String[] body){
+	public void send_ToAll(String code){
 		for (int i = 0; i < clientList.size(); i++) {
-			Client client=(Client)clientList.elementAt(i);
+			client=(Client)clientList.elementAt(i);
+			nameList[i]=client.getName();
+		}
+		for (int i = 0; i < clientList.size(); i++) {
+			client=(Client)clientList.elementAt(i);
+			client.send_Json_Message("nameList", nameList[0], nameList[1], nameList[2], nameList[3]);
+		}
+	}
+	public void send_ToAll(String code, boolean body){
+		for (int i = 0; i < clientList.size(); i++) {
+			client=(Client)clientList.elementAt(i);
 			client.send_Json_Message(code, body);
 		}
 	}

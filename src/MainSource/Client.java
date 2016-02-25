@@ -15,7 +15,7 @@ public class Client {
 	
 	//private boolean state;
 	private int isLandCount=0;
-	private int money=50;
+	private int money=200;
 	private String name;
 	private Vector cityList=new Vector();
 	private int position=0;
@@ -130,10 +130,13 @@ public class Client {
 			JOptionPane.showMessageDialog(null, "Code:snedMSG, send Error", "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-	public void send_Json_Message(String code, String[] body){
+	public void send_Json_Message(String code, String bodyOne,String bodyTwo,String bodyThree,String bodyFour){
 		jsonMsg.clear();;
 		jsonMsg.put("code", code);
-		jsonMsg.put("body", body);
+		jsonMsg.put("bodyOne", bodyOne);
+		jsonMsg.put("bodyTwo", bodyTwo);
+		jsonMsg.put("bodyThree", bodyThree);
+		jsonMsg.put("bodyFour", bodyFour);
 		try {
 			dos.writeUTF(jsonMsg.toJSONString());
 		} catch (IOException e) {
