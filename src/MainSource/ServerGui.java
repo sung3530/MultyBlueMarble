@@ -19,8 +19,6 @@ public class ServerGui extends JFrame implements ActionListener{
 	private JTextArea ja=new JTextArea();
 	private JScrollPane js=new JScrollPane();
 	private ServerManager serverManager;
-	
-
 	public ServerGui(){
 		super("ServerGui");
 		this.serverManager=new ServerManager(this);
@@ -29,7 +27,6 @@ public class ServerGui extends JFrame implements ActionListener{
 		portTextGenerate();
 		buttonGenerate();
 		panelGenerate();
-		
 	}
 	
 	public JButton[] getButton(){
@@ -87,7 +84,6 @@ public class ServerGui extends JFrame implements ActionListener{
 		if(e.getSource().equals(jb[0])){
 			serverManager.setPort(Integer.parseInt(portTextField.getText()));
 			serverManager.serverStart();
-		}
-		
+		}	
 	}
 }

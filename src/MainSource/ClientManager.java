@@ -12,6 +12,8 @@ public class ClientManager {
 	private Vector clientList=new Vector();
 	private String[] nameList=new String[4];
 	private Client client;
+	private int turn=0;
+	
 	public Vector getList(){
 		return clientList;
 	}
@@ -26,26 +28,34 @@ public class ClientManager {
 	public int count_Client(){
 		return clientList.size();
 	}
-	public void turnStart(int count){
-		switch (count) {
+	public void turnStart(){
+		switch (turn%4) {
 		case 0:
 			client=(Client)clientList.elementAt(0);
-			client.send_Json_Message("order", true);
+			if(client.getIsland())
+				client.send_Json_Message("order", true);
+			turn++;
 			break;
 
 		case 1:
 			client=(Client)clientList.elementAt(1);
-			client.send_Json_Message("order", true);
+			if(client.getIsland())
+				client.send_Json_Message("order", true);
+			turn++;
 			break;
 
 		case 2:
 			client=(Client)clientList.elementAt(2);
-			client.send_Json_Message("order", true);
+			if(client.getIsland())
+				client.send_Json_Message("order", true);
+			turn++;
 			break;
 
 		case 3:
 			client=(Client)clientList.elementAt(3);
-			client.send_Json_Message("order", true);
+			if(client.getIsland())
+				client.send_Json_Message("order", true);
+			turn++;
 			break;
 
 		default:
@@ -68,5 +78,8 @@ public class ClientManager {
 			Client client=(Client)clientList.elementAt(i);
 			client.send_Json_Message(code, body);
 		}
+	}
+	public void endClient(Client client){
+		clientList.remove(client);
 	}
 }

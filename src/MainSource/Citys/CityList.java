@@ -3,7 +3,14 @@ package MainSource.Citys;
 public class CityList {
 	private City[] cityList=new City[16];
 	
-	public void setCityList(){
+	public CityList(){
+		setCityList();
+		
+	}
+	public City[] getCityList(){
+		return cityList;
+	}
+	private void setCityList(){
 		cityList[0]=new Start_Point();
 		cityList[1]=new Beijing();
 		cityList[2]=new HongKong();
